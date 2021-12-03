@@ -1,12 +1,19 @@
+import { LogoutOutlined } from "@ant-design/icons";
 import React from "react";
 import MessageForm from "./MessageForm";
 import MyMessage from "./MyMessage";
 import TheirMessage from "./TheirMessage";
+import { Button } from "antd";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
 
   const chat = chats && chats[activeChat];
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.replace(`http://localhost:3000`);
+  };
 
   const renderReadReceipts = (message, isMyMessage) => {
     return chat.people.map(
@@ -66,6 +73,18 @@ const ChatFeed = (props) => {
         <div className="chat-title">{chat.title}</div>
         <div className="chat-subtitle">
           {chat.people.map((person) => ` ${person.person.username}`)}
+        </div>
+        <div className="log-out-icon">
+          <Button
+            type="primary"
+            danger
+            ghost
+            style={{ margin: "1rem 0" }}
+            onClick={handleLogout}
+          >
+            Logout
+            <LogoutOutlined />
+          </Button>
         </div>
       </div>
       {renderMessages()}

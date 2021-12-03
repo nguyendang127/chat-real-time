@@ -1,5 +1,6 @@
 import { ChatEngine } from "react-chat-engine";
 import "./App.css";
+import "antd/dist/antd.css";
 import ChatFeed from "./components/ChatFeed";
 import LoginForm from "./components/LoginForm";
 
