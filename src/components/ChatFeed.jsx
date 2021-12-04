@@ -1,4 +1,4 @@
-import { LogoutOutlined } from "@ant-design/icons";
+import { LoadingOutlined, LogoutOutlined } from "@ant-design/icons";
 import React from "react";
 import MessageForm from "./MessageForm";
 import MyMessage from "./MyMessage";
@@ -7,6 +7,7 @@ import { Button } from "antd";
 
 const ChatFeed = (props) => {
   const { chats, activeChat, userName, messages } = props;
+  console.log(chats);
 
   const chat = chats && chats[activeChat];
 
@@ -65,7 +66,13 @@ const ChatFeed = (props) => {
     });
   };
 
-  if (!chat) return "Loading...";
+  if (!chat)
+    return (
+      <div style={{ textAlign: "center" }}>
+        <LoadingOutlined style={{ marginRight: "1rem" }} />
+        Loading
+      </div>
+    );
 
   return (
     <div className="chat-feed">
